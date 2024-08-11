@@ -40,8 +40,9 @@ namespace MergeCommand
                                 "WHEN MATCHED THEN " +
                                 "UPDATE SET Target.ProductName = Source.ProductName, " +
                                             "Target.Price = Source.Price;";
-                    db.Execute(sql);
+                    var rowCount = db.Execute(sql);
                     var query = db.Query<SourceProducts>("SELECT * FROM SourceProducts").ToList();
+                    rowCount.Output();
                     query.Output();
                 }
 
